@@ -1,9 +1,9 @@
 type SharedAttributes = {
     id: string;
-    created: string | Date;
+    created: string;
     title: string;
-    description?: string;
-    deadline?: string | Date;
+    description: string;
+    deadline: string;
   };
   
   type Goal = SharedAttributes & { completed: boolean };

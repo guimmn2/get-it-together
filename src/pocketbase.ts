@@ -65,14 +65,24 @@ export function username(): string {
 }
 
 export function userId(): string {
-  return pb.authStore.model?.id
+  return pb.authStore.model?.id;
 }
 
-export async function createGoalAction(form: FormData): Promise<void> {
-  form.append('user', userId())
-  await pb.collection('goals').create<Goal>(form)
+export async function createGoalFn(form: FormData): Promise<Goal> {
+  form.append("user", userId());
+  return await pb.collection("goals").create<Goal>(form);
 }
 
 export async function fetchGoalsFn(): Promise<Goal[]> {
-  return await pb.collection('goals').getFullList<Goal>({ filter: `user = "${userId()}"`})
+  return await pb
+    .collection("goals")
+    .getFullList<Goal>({ filter: `user = "${userId()}"` });
+}
+
+export async function toggleGoalFn(form: FormData): Promise<Goal> {
+  const completed = form.get("completed") === null ? false : true;
+  const id = form.get("id") as string;
+  return await pb
+    .collection("goals")
+    .update<Goal>(id, { completed: completed });
 }
