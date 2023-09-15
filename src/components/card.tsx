@@ -19,7 +19,7 @@ export default function Card(props: {
   return (
     <article class="flex">
       <div>
-        <props.onCheck.Form>
+        <toggleGoal.Form>
           <input
             class="checkbox checkbox-secondary"
             type="checkbox"
@@ -28,7 +28,7 @@ export default function Card(props: {
             onClick={(e) => e.currentTarget.form?.requestSubmit()}
           />
           <input type="hidden" name="id" value={props.data.id}/>
-        </props.onCheck.Form>
+        </toggleGoal.Form>
       </div>
       <div>{props.data.title} | completed value in UI: {JSON.stringify(props.data.completed)}</div>
     </article>

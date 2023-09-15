@@ -59,7 +59,7 @@ export default function Home() {
                 deadline: goal.deadline,
                 completed: goal.completed
               }}
-              onCheck={toggleGoalFn}
+              onCheck={toggleGoals}
             />
           )}
         </For>
