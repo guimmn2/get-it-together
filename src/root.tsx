@@ -42,20 +42,19 @@ export default function Root() {
                     useLocation().pathname !== "/user"
                   }
                 >
-                  <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
+                  <li class={`border-b-2 ${active("/login")} mx-1.5 sm:mx-6`}>
                     <A href="/login">Login</A>
                   </li>
-                  <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
+                  <li class={`border-b-2 ${active("/register")} mx-1.5 sm:mx-6`}>
                     <A href="/register">Register</A>
                   </li>
                 </Show>
                 <Show when={useLocation().pathname === "/"}>
-                  <li class="hover:cursor-pointer mx-1.5 sm:mx-6">
+                  <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
                     <A href="/user">{pbAuthStore()?.model?.username}</A>
                   </li>
-                  <li class="hover:cursor-pointer mx-1.5 sm:mx-6">
+                  <li class={`mx-1.5 sm:mx-6`}>
                     <button
-                      class="hover:cursor-pointer"
                       onClick={() => logout()}
                     >
                       Logout

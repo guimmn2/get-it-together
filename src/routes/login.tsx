@@ -1,6 +1,14 @@
 import { Show } from "solid-js"
-import { A, createRouteAction } from "solid-start"
-import { loginFn } from "~/pocketbase"
+import { A, createRouteAction, createRouteData, redirect } from "solid-start"
+import { isLoggedIn, loginFn } from "~/pocketbase"
+
+export function routeData() {
+  createRouteData(() => {
+    if (isLoggedIn()) {
+      return redirect("/")
+    }
+  })
+}
 
 export default function Login() {
     const [loggingIn, login] = createRouteAction(async (form: FormData) => loginFn(form))

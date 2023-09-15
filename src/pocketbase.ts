@@ -57,6 +57,5 @@ export function pbAuthStore() {
 }
 
 export function isLoggedIn(): boolean {
-  console.log("authstore: ", pb.authStore.isValid);
   return pb.authStore.isValid;
 }
