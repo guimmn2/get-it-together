@@ -52,10 +52,27 @@ export function logoutFn(): Response {
   return redirect("/login");
 }
 
+export function isLoggedIn(): boolean {
+  return pb.authStore.isValid;
+}
+
 export function pbAuthStore() {
   return pb.authStore;
 }
 
-export function isLoggedIn(): boolean {
-  return pb.authStore.isValid;
+export function username(): string {
+  return pb.authStore.model?.username || "";
+}
+
+export function userId(): string {
+  return pb.authStore.model?.id
+}
+
+export async function createGoalAction(form: FormData): Promise<void> {
+  form.append('user', userId())
+  await pb.collection('goals').create<Goal>(form)
+}
+
+export async function fetchGoalsFn(): Promise<Goal[]> {
+  return await pb.collection('goals').getFullList<Goal>({ filter: `user = "${userId()}"`})
 }

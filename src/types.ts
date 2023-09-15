@@ -9,7 +9,7 @@ type SharedAttributes = {
   type Goal = SharedAttributes & { completed: boolean };
   //maybe will only need to pass the id, maybe the whole associated parent Goal, not sure yet
   type Milestone = Goal & { parentGoal: string | Goal };
-  type Resolutions = SharedAttributes & { frequency: Frequency };
+  type Resolution = SharedAttributes & { frequency: Frequency };
   
   type Frequency =
     | "daily"

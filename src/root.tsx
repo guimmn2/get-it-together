@@ -22,10 +22,10 @@ export default function Root() {
   const [_, logout] = createRouteAction(async () => logoutFn())
   const active = (path: string) =>
     path == location.pathname
-      ? "border-sky-600"
-      : "border-transparent hover:border-sky-600";
+      ? "text-accent"
+      : "hover:text-accent";
   return (
-    <Html lang="en">
+    <Html lang="en" data-theme="business">
       <Head>
         <Title>SolidStart - With TailwindCSS</Title>
         <Meta charset="utf-8" />
@@ -34,7 +34,7 @@ export default function Root() {
       <Body>
         <Suspense>
           <ErrorBoundary>
-            <nav class="bg-sky-800">
+            <nav class="bg-neutral">
               <ul class="container flex items-center p-3 text-gray-200">
                 <Show
                   when={
@@ -42,18 +42,18 @@ export default function Root() {
                     useLocation().pathname !== "/user"
                   }
                 >
-                  <li class={`border-b-2 ${active("/login")} mx-1.5 sm:mx-6`}>
+                  <li class={`${active("/login")} mx-1.5 sm:mx-6`}>
                     <A href="/login">Login</A>
                   </li>
-                  <li class={`border-b-2 ${active("/register")} mx-1.5 sm:mx-6`}>
+                  <li class={`${active("/register")} mx-1.5 sm:mx-6`}>
                     <A href="/register">Register</A>
                   </li>
                 </Show>
                 <Show when={useLocation().pathname === "/"}>
-                  <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
+                  <li class={`${active("/")} mx-1.5 sm:mx-6`}>
                     <A href="/user">{pbAuthStore()?.model?.username}</A>
                   </li>
-                  <li class={`mx-1.5 sm:mx-6`}>
+                  <li class="mx-1.5 sm:mx-6 hover:text-accent">
                     <button
                       onClick={() => logout()}
                     >
